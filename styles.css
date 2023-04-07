@@ -1,0 +1,49 @@
+
+.iconSpellSheet{
+    margin-right: 5px;
+}
+
+.iconSpellComp{
+    margin-right: 5px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-left: -10px;
+}
+
+.iconSpellRarity{
+    margin-right: 5px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-left: -45px;
+    z-index: 99;
+}
+
+.iconSpellRarityHotbar{
+    margin-right: 5px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    margin-left: -48px;
+    z-index: 99;
+}
+
+.iconSpellRaritySheet{
+    margin-right: 5px;
+    margin-left: -36.5px;
+}
+
+.dd-item
+.namecontainer{
+    overflow: visible !important;
+}
+
+.charsheet .spell .prep-box {
+    margin-top: 15px !important;
+}
+
+.spell .prep {
+    top: 3px !important;
+}
+
+input[name="attr_atkbonus"] {
+    height: 100%;
+}

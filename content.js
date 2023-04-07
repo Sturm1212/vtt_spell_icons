@@ -2,8 +2,8 @@ var urlHost = 'https://raw.githubusercontent.com/Sturm1212/vtt_spell_icons/main/
 
 
 function updateSpellList() {
+    $('span[name="attr_atkname"]').addClass( "atk_name" )
     for(var i = 0; i < spellList.length; i++) {
-        console.log('test');
         var SpellName = spellList[i][0];
         
         var SpellNameCustom = spellList[i][0] + '!';
@@ -16,16 +16,19 @@ function updateSpellList() {
         var SpellLevel = spellList[i][2];
         
         if($('.spells').length > 0){ 
+            /*Liste des spells dans le spellbook d'un character*/
             if ( $('.spellname:contains("'+SpellName+'")')[0] ) { 
-                $('.spellname:contains("'+SpellName+'")').filter((i, p) => $(p).html() === SpellName).prepend('<img class="iconSpellSheet" width="32" src="'+urlHost+IconID+'.png"><img class="iconSpellRaritySheet" width="24" src="'+urlHost+'Level'+SpellLevel+'.png">');
-                $('.spellname:contains("'+SpellNameCustom+'")').filter((i, p) => $(p).html() === SpellNameCustom).prepend('<img class="iconSpellSheet" width="32" src="'+urlHost+IconID+'.png"><img class="iconSpellRaritySheet" width="24" src="'+urlHost+'Level'+SpellLevel+'.png">');
+                $('.spellname:contains("'+SpellName+'")').filter((i, p) => $(p).html() === SpellName).prepend('<img class="iconSpellSheet" width="24" src="'+urlHost+IconID+'.png"><img class="iconSpellRaritySheet" width="24" src="'+urlHost+'Level'+SpellLevel+'.png">');
+                $('.spellname:contains("'+SpellNameCustom+'")').filter((i, p) => $(p).html() === SpellNameCustom).prepend('<img class="iconSpellSheet" width="24" src="'+urlHost+IconID+'.png"><img class="iconSpellRaritySheet" width="24" src="'+urlHost+'Level'+SpellLevel+'.png">');
             }
-            if ( $('span:contains("'+SpellName+'")')[0] ) { 
-                $('span:contains("'+SpellName+'")').filter((i, p) => $(p).html() === SpellName).prepend('<img class="iconSpellSheet" width="32" src="'+urlHost+IconID+'.png">');
-                $('span:contains("'+SpellNameCustom+'")').filter((i, p) => $(p).html() === SpellNameCustom).prepend('<img class="iconSpellSheet" width="32" src="'+urlHost+IconID+'.png">');
+            /*Liste des spells dans l'attaque liste d'un character*/
+            if ( $('.atk_name:contains("'+SpellName+'")')[0] ) { 
+                $('.atk_name:contains("'+SpellName+'")').filter((i, p) => $(p).html() === SpellName).prepend('<img class="iconSpellSheet" width="32" src="'+urlHost+IconID+'.png">');
+                $('.atk_name:contains("'+SpellNameCustom+'")').filter((i, p) => $(p).html() === SpellNameCustom).prepend('<img class="iconSpellSheet" width="32" src="'+urlHost+IconID+'.png">');
             }
         }
 
+        /*Liste des spells dans le compendium*/
         if($("#compendiumtab").hasClass("ui-state-active")){ 
             if ( $('.namecontainer:contains("'+SpellName+'")')[0] ) { 
                 $('.namecontainer:contains("'+SpellName+'")').filter((i, p) => $(p).html() === SpellName).prepend('<img class="iconSpellComp" width="40" src="'+urlHost+IconID+'.png"><img class="iconSpellRarity" width="40" src="'+urlHost+'Level'+SpellLevel+'.png">');
@@ -33,19 +36,21 @@ function updateSpellList() {
         }
     }
 
+    /*Image par défaut si spell manquant*/
     document.querySelectorAll('.iconSpellComp').forEach(function(img){
         img.onerror = function(){this.src='https://raw.githubusercontent.com/Sturm1212/vtt_spell_icons/main/default_bw.png';};
     });
-
     document.querySelectorAll('.iconSpellSheet').forEach(function(img){
         img.onerror = function(){this.src='https://raw.githubusercontent.com/Sturm1212/vtt_spell_icons/main/default_bw.png';};
     });
 
+    /*Reajustement de hauteur pour affichage*/
     $("input[name='attr_atkbonus']").css("height", "100%");
     $("input[name='attr_atkdmgtype']").css("height", "100%");
     
 };
 
+/*Les icons sont refresh a toutes les 5 secondes*/
 var intervalId = window.setInterval(function(){
     if($("#compendiumtab").hasClass("ui-state-active") || $('.spells').length > 0){ 
         updateSpellList();
@@ -54,6 +59,7 @@ var intervalId = window.setInterval(function(){
 
 
 var spellList = [
+    /*-------------------------Spells-------------------------------------------------*/
     ["Abhorrence", "", 0],
     ["Abhorrent Apparition", "", 4],
     ["Abi-Dalzim’s Horrid Wilting", "Abi-Dalzims-Horrid-Wilting", 8],
@@ -1001,7 +1007,7 @@ var spellList = [
     ["Rain Of Blades", "", 5],
     ["Raise Dead", "", 5],
     ["Raise Nemesis", "", 5],
-    ["Rary's Telepathic Bond", "Ray_Telepathic_Bond", 5],
+    ["Rary's Telepathic Bond", "Rary_Telepathic_Bond", 5],
     ["Recharge", "", 5],
     ["Reincarnate", "", 5],
     ["Sanguine Horror", "", 5],
@@ -1285,7 +1291,21 @@ var spellList = [
     ["Shape Plants", "", 4],
     ["Spiny Shield", "", 1],
     ["Stellar Bodies", "", 4],
-    ["Veil of Dusk", "", 1]
+    ["Veil of Dusk", "", 1],
+    /*-------------------------Classes-------------------------------------------------*/
+    ["Barbarian", "", 1],
+    ["Bard", "", 1],
+    ["Cleric", "", 1],
+    ["Druid", "", 1],
+    ["Fighter", "", 1],
+    ["Monk", "", 1],
+    ["Paladin", "", 1],
+    ["Ranger", "", 1],
+    ["Rogue", "", 1],
+    ["Sorcerer", "", 1],
+    ["Warlock", "", 1],
+    ["Wizard", "", 1],
+    ["Artificer", "", 1]
 ];
 
 
